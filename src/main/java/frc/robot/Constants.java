@@ -19,9 +19,7 @@ public final class Constants {
     }
 
     public static final class DrivetrainConstants {
-        public static final int frontLeftSparkMaxCANID = 1;
-        public static final int rearLeftSparkMaxCANID = 2;
-        public static final int frontRightSparkMaxCANID = 3;
-        public static final int rearRightSparkMaxCANID = 4;
+        public static final int leftSparkMaxCANID = 1;
+        public static final int rightSparkMaxCANID = 2;
     }
 }
