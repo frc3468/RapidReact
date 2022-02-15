@@ -4,8 +4,12 @@
 
 package frc.robot.subsystems;
 
+import java.io.FileNotFoundException;
+import java.util.List;
+
 import org.photonvision.PhotonCamera;
 import org.photonvision.common.hardware.VisionLEDMode;
+import org.photonvision.targeting.PhotonTrackedTarget;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -49,5 +53,28 @@ public class Camera extends SubsystemBase {
     }
     else{m_camera.setLED(VisionLEDMode.kOn);
     };
-}
+  }
+  public void changepipeline(int pipenum) {
+    // as we set this up we should note pipenum numbers
+  m_camera.setPipelineIndex(pipenum);
+  }
+  
+  private List<PhotonTrackedTarget> gettargetsList() throws FileNotFoundException{
+     
+    if(seetarget() == true){
+    var m_result = m_camera.getLatestResult();
+    List<PhotonTrackedTarget> targets = m_result.getTargets();
+    return targets;
+    }
+    else{  
+      throw new FileNotFoundException("No targets found. Make rsure to run see targets before this.would've thrown a whole buffer overflow"); 
+    }
+  }
+  public PhotonTrackedTarget getBestTarget() throws FileNotFoundException{
+    if(seetarget()== true){
+      var m_result = m_camera.getLatestResult();
+      return m_result.getBestTarget();
+    }
+    else{ throw new FileNotFoundException("No targets found. Make sure to run see targets next time before you do this ");}
+  };
 }
