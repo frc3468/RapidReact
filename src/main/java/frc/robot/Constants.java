@@ -22,4 +22,11 @@ public final class Constants {
         public static final int leftSparkMaxCANID = 1;
         public static final int rightSparkMaxCANID = 2;
     }
+
+    public static final class LiftConstants {
+        public static final int liftMotor = 3;
+        public static final double raiseSpeed = 1.0;
+        public static final double lowerSpeed = -1.0;
+        public static final double stopSpeed = 0.0;
+    }
 }
