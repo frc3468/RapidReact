@@ -22,4 +22,11 @@ public final class Constants {
         public static final int leftSparkMaxCANID = 1;
         public static final int rightSparkMaxCANID = 2;
     }
+    public static final class BallMechinismConstants {
+        public static final int spinSparkMaxCANID = 3;
+        public static final double intakeSpeed = 0.4;
+        public static final double extakeSpeed = -0.4;
+        public static final double stopSpeed = 0.0;
+    }
+
 }
