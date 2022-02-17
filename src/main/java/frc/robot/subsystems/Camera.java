@@ -67,7 +67,7 @@ public class Camera extends SubsystemBase {
     return targets;
     }
     else{  
-      throw new FileNotFoundException("No targets found. Make rsure to run see targets before this.would've thrown a whole buffer overflow"); 
+    return null;
     }
   }
   public PhotonTrackedTarget getBestTarget() throws FileNotFoundException{
@@ -75,6 +75,6 @@ public class Camera extends SubsystemBase {
       var m_result = m_camera.getLatestResult();
       return m_result.getBestTarget();
     }
-    else{ throw new FileNotFoundException("No targets found. Make sure to run see targets next time before you do this ");}
+    else{ return null;}
   };
 }
