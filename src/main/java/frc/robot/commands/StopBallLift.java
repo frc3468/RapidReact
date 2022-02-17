@@ -7,10 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallLift;
 
-public class RaiseBallLift extends CommandBase {
+public class StopBallLift extends CommandBase {
   private BallLift m_subsystem;
   /** Creates a new RaiseLift. */
-  public RaiseBallLift (BallLift subsystem){
+  public StopBallLift (BallLift subsystem){
       m_subsystem = subsystem;
       addRequirements(m_subsystem);
   }
@@ -22,7 +22,7 @@ public class RaiseBallLift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.raise();
+    m_subsystem.stop();
   }
   
   // Called once the command ends or is interrupted.
@@ -37,3 +37,4 @@ public class RaiseBallLift extends CommandBase {
     return false;
   }
 }
+
