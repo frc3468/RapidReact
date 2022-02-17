@@ -5,12 +5,15 @@
 package frc.robot.subsystems;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.List;
 
 import org.photonvision.PhotonCamera;
 import org.photonvision.common.hardware.VisionLEDMode;
 import org.photonvision.targeting.PhotonTrackedTarget;
+import org.photonvision.targeting.TargetCorner;
 
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Camera extends SubsystemBase {
@@ -70,11 +73,50 @@ public class Camera extends SubsystemBase {
     return null;
     }
   }
-  public PhotonTrackedTarget getBestTarget() throws FileNotFoundException{
+  public PhotonTrackedTarget getBestTarget() 
+  {
     if(seetarget()== true){
       var m_result = m_camera.getLatestResult();
       return m_result.getBestTarget();
     }
-    else{ return null;}
+    else{ return null;}}
+  public Double[] getNumeralsFromBestTarget() {
+    PhotonTrackedTarget target = getBestTarget();
+    if (target != null) {
+      Double[] array = new Double[4]; 
+      array[1] = target.getYaw();
+      array[2] = target.getPitch();
+      array[3] = target.getSkew();
+      array[4] = target.getArea();
+      return array;
+
+    }
+    else{
+      return null;
+    } 
+
+
   };
-}
+  public Transform2d Povtransformation(){
+    PhotonTrackedTarget target = getBestTarget(); 
+    if (target != null) {
+     return target.getCameraToTarget();
+    }
+    else{
+      return null;
+    }
+      
+  }
+  public List<TargetCorner> getcorners(){
+    PhotonTrackedTarget target = getBestTarget(); 
+    if (target != null){
+      return target.getCorners();
+    }
+    else{
+      return null;
+    }
+
+
+  }
+  
+} 
