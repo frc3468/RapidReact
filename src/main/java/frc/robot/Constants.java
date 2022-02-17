@@ -22,4 +22,10 @@ public final class Constants {
         public static final int leftSparkMaxCANID = 1;
         public static final int rightSparkMaxCANID = 2;
     }
+
+    public static final class ClimbingConstants{
+        public static final int frontSparkMaxID = 3;
+        public static final int backSparkMaxID = 4;
+        public static final double ascensionSpeed = 1.0;
+    }
 }
