@@ -9,9 +9,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.LowerBallLift;
+import frc.robot.commands.RaiseBallLift;
+import frc.robot.commands.StopBallLift;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.BallLift;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,9 +28,11 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain m_driveTrain = new Drivetrain();
-
+  private final BallLift m_ballLift = new BallLift();
+  private final LowerBallLift m_lowerBallLift = new LowerBallLift(m_ballLift);
+  private final RaiseBallLift m_raiseBallLift = new RaiseBallLift(m_ballLift);
+  private final StopBallLift m_stopBallLift = new StopBallLift(m_ballLift);
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
-
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -34,6 +41,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
+    m_ballLift.setDefaultCommand(new StopBallLift(m_ballLift));
   }
 
   /**
@@ -42,7 +50,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
