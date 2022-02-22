@@ -23,9 +23,17 @@ public final class Constants {
         public static final int rightSparkMaxCANID = 2;
     }
 
-    public static final class ClimbingConstants{
+    public static final class FrontArmConstants{
         public static final int frontSparkMaxID = 3;
+        public static final double ascensionSpeed = 1.0;
+        public static final double descensionSpeed = -1.0;
+        public static final double stopSpeed = 0.0;
+    }
+
+    public static final class BackArmConstants{
         public static final int backSparkMaxID = 4;
         public static final double ascensionSpeed = 1.0;
+        public static final double descensionSpeed = -1.0;
+        public static final double stopSpeed = 0.0;
     }
 }

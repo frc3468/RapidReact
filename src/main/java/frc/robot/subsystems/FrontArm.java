@@ -8,23 +8,29 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ClimbingConstants;
+import frc.robot.Constants.FrontArmConstants;
 
-public class Climbing extends SubsystemBase {
+public class FrontArm extends SubsystemBase {
   
-  private CANSparkMax m_frontClimbNEO;
-  private CANSparkMax m_backClimbNEO;
+  private CANSparkMax m_frontArmNEO;
 
   /** Creates a new Climbing. */
-  public Climbing() {
-    m_frontClimbNEO = new CANSparkMax(ClimbingConstants.frontSparkMaxID,MotorType.kBrushless);
-    m_backClimbNEO = new CANSparkMax(ClimbingConstants.backSparkMaxID,MotorType.kBrushless);
+  public FrontArm() {
+    m_frontArmNEO = new CANSparkMax(FrontArmConstants.frontSparkMaxID,MotorType.kBrushless);
   }
 
-  public void ascend(){
-    m_frontClimbNEO.set(ClimbingConstants.ascensionSpeed);
+  public void ascendFrontArm(){
+    m_frontArmNEO.set(FrontArmConstants.ascensionSpeed);
   }
 
+  public void descendFrontArm(){
+    m_frontArmNEO.set(FrontArmConstants.descensionSpeed);
+  }
+
+  public void stopFrontArm(){
+    m_frontArmNEO.set(FrontArmConstants.stopSpeed);
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
