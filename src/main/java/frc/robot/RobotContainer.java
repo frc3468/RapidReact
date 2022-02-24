@@ -7,10 +7,18 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.BackClimbAscention;
+import frc.robot.commands.BackClimbDescention;
+import frc.robot.commands.BackClimbStop;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.FrontClimbAscention;
+import frc.robot.commands.FrontClimbDescention;
+import frc.robot.commands.FrontClimbStop;
 import frc.robot.commands.TankDrive;
+import frc.robot.subsystems.BackArm;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.FrontArm;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -23,6 +31,14 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain m_driveTrain = new Drivetrain();
+  private final FrontArm m_frontArm = new FrontArm();
+  private final FrontClimbStop m_frontClimbStop = new FrontClimbStop(m_frontArm);
+  private final FrontClimbAscention m_frontClimbAscention = new FrontClimbAscention(m_frontArm);
+  private final FrontClimbDescention m_frontClimbDescention = new FrontClimbDescention(m_frontArm);
+  private final BackArm m_backArm = new BackArm();
+  private final BackClimbStop m_backClimbStop = new BackClimbStop(m_backArm);
+  private final BackClimbAscention m_backClimbAscention = new BackClimbAscention(m_backArm);
+  private final BackClimbDescention m_backClimbDescention = new BackClimbDescention(m_backArm);
 
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
 
@@ -34,6 +50,10 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
+
+    m_frontArm.setDefaultCommand(m_frontClimbStop);
+    m_backArm.setDefaultCommand(m_backClimbStop);
+
   }
 
   /**
