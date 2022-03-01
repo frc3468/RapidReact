@@ -7,11 +7,27 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.m_driverControllerConstants;
+import frc.robot.commands.Dispose;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Retrieve;
 import frc.robot.commands.TankDrive;
+<<<<<<< HEAD
+import frc.robot.subsystems.BallMechinism;
+=======
+import frc.robot.commands.LowerBallLift;
+import frc.robot.commands.RaiseBallLift;
+import frc.robot.commands.StopBallLift;
+>>>>>>> origin/Lift
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.BallLift;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+<<<<<<< HEAD
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+=======
+import edu.wpi.first.wpilibj2.command.Subsystem;
+>>>>>>> origin/Lift
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,9 +39,17 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain m_driveTrain = new Drivetrain();
+  private final BallMechinism m_BallMechinism = new BallMechinism();
+  private final BallLift m_ballLift = new BallLift();
+  
+  private final Retrieve m_Retrieve = new Retrieve(m_BallMechinism);
+  private final Dispose m_dDispose = new Dispose(m_BallMechinism);
+
+  private final LowerBallLift m_lowerBallLift = new LowerBallLift(m_ballLift);
+  private final RaiseBallLift m_raiseBallLift = new RaiseBallLift(m_ballLift);
+  private final StopBallLift m_stopBallLift = new StopBallLift(m_ballLift);
 
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
-
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -34,6 +58,19 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
+<<<<<<< HEAD
+
+    JoystickButton intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
+    JoystickButton ExtakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
+
+    //intake
+    intakeButton.whileHeld(m_Retrieve);
+
+    //Extake
+    ExtakeButton.whileHeld(m_dDispose);
+=======
+    m_ballLift.setDefaultCommand(new StopBallLift(m_ballLift));
+>>>>>>> origin/Lift
   }
 
   /**
@@ -42,7 +79,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
