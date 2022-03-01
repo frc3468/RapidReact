@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -23,17 +25,24 @@ public final class Constants {
         public static final int rightSparkMaxCANID = 2;
     }
 
-    public static final class FrontArmConstants{
+    public static final class FrontArmConstants {
         public static final int frontSparkMaxID = 3;
         public static final double ascensionSpeed = 1.0;
         public static final double descensionSpeed = -1.0;
         public static final double stopSpeed = 0.0;
     }
 
-    public static final class BackArmConstants{
+    public static final class BackArmConstants {
         public static final int backSparkMaxID = 4;
         public static final double ascensionSpeed = 1.0;
         public static final double descensionSpeed = -1.0;
         public static final double stopSpeed = 0.0;
+    }
+
+    public static final class m_driverControllerConstants {
+        public static final int frontArmAscend = XboxController.Button.kLeftBumper.value;
+        public static final int frontArmDescend = XboxController.Axis.kLeftTrigger.value;
+        public static final int backArmAscend = XboxController.Button.kRightBumper.value;
+        public static final int backArmDescend = XboxController.Axis.kRightTrigger.value;
     }
 }
