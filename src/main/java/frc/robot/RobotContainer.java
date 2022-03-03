@@ -56,7 +56,8 @@ public class RobotContainer {
 
     m_FrontArmDescentButton.whileHeld(new FrontClimbDescention(m_frontArm));
     m_FrontArmAscentButton.whileHeld(new FrontClimbDescention(m_frontArm));
-    m_BackArmDescentButton.whileHeld(new BackClimbAscention(m_backArm));
+    
+    m_BackArmDescentButton.whenPressed(new BackClimbAscention(m_backArm));
     m_BackArmAscentButton.whileHeld(new BackClimbAscention(m_backArm));
   }
 
