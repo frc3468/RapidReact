@@ -10,9 +10,11 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.m_driverControllerConstants;
 import frc.robot.commands.BackClimbAscention;
 import frc.robot.commands.BackClimbDescention;
+import frc.robot.commands.BackClimbStop;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FrontClimbAscention;
 import frc.robot.commands.FrontClimbDescention;
+import frc.robot.commands.FrontClimbStop;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.BackArm;
 import frc.robot.subsystems.Drivetrain;
@@ -34,9 +36,11 @@ public class RobotContainer {
   private final FrontArm m_frontArm = new FrontArm();
   private final FrontClimbAscention m_frontClimbAscention = new FrontClimbAscention(m_frontArm);
   private final FrontClimbDescention m_frontClimbDescention = new FrontClimbDescention(m_frontArm);
+  private final FrontClimbStop m_frontClimbStop = new FrontClimbStop(m_frontArm);
   private final BackArm m_backArm = new BackArm();
   private final BackClimbAscention m_backClimbAscention = new BackClimbAscention(m_backArm);
   private final BackClimbDescention m_backClimbDescention = new BackClimbDescention(m_backArm);
+  private final BackClimbStop m_backClimbStop = new BackClimbStop(m_backArm);
 
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
 
@@ -48,6 +52,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
+    m_frontArm.setDefaultCommand(new FrontClimbStop(m_frontArm));
+    m_backArm.setDefaultCommand(new BackClimbStop(m_backArm));
 
     JoystickButton m_FrontArmDescentButton = new JoystickButton(m_driverController,m_driverControllerConstants.frontArmDescend);
     JoystickButton m_FrontArmAscentButton = new JoystickButton(m_driverController,m_driverControllerConstants.frontArmAscend);
@@ -58,7 +64,7 @@ public class RobotContainer {
     m_FrontArmAscentButton.whileHeld(new FrontClimbDescention(m_frontArm));
     
     m_BackArmDescentButton.whenPressed(new BackClimbAscention(m_backArm));
-    m_BackArmAscentButton.whileHeld(new BackClimbAscention(m_backArm));
+    m_BackArmAscentButton.whenPressed(new BackClimbAscention(m_backArm));
   }
 
   /**

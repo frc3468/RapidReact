@@ -37,13 +37,15 @@ public final class Constants {
         public static final double ascensionSpeed = 1.0;
         public static final double descensionSpeed = -1.0;
         public static final double stopSpeed = 0.0;
-        public static final double backArmP = 1;
-        public static final double backArmI = 1;
-        public static final double backArmD = 1;
-        public static final double backArmIZone = 1;
-        public static final double backArmFF = 1;        
-        public static final double backArmMin = 1;
-        public static final double backArmMax = 1;
+        public static final double backArmP = 1.0;
+        public static final double backArmI = 1.0;
+        public static final double backArmD = 1.0;
+        public static final double backArmIZone = 1.0;
+        public static final double backArmFF = 1.0;        
+        public static final double backArmMin = 1.0;
+        public static final double backArmMax = 0.0;
+        public static final double upPIDReference = 10.0;
+        public static final double downPIDReference = 0.0;
     }
 
     public static final class m_driverControllerConstants {
