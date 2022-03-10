@@ -37,10 +37,11 @@ public final class Constants {
     }
 
 
-    public static final class LiftConstants {
+    public static final class BallLiftConstants {
         public static final int liftMotor = 3;
         public static final double raiseSpeed = 1.0;
         public static final double lowerSpeed = -1.0;
         public static final double stopSpeed = 0.0;
+
     }
 }

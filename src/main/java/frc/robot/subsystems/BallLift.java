@@ -7,9 +7,9 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.LiftConstants;
+import frc.robot.Constants;
+import frc.robot.Constants.BallLiftConstants;
 
 import com.revrobotics.SparkMaxLimitSwitch;
 
@@ -20,19 +20,25 @@ public class BallLift extends SubsystemBase {
   private SparkMaxLimitSwitch m_reverseLimit;
 
   public BallLift() {
-    m_liftMotor = new CANSparkMax(LiftConstants.liftMotor,MotorType.kBrushless); 
+    m_liftMotor = new CANSparkMax(BallLiftConstants.liftMotor,MotorType.kBrushless);     
+    
+    m_forwardLimit = m_liftMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+    m_reverseLimit = m_liftMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
+    
+    m_forwardLimit.enableLimitSwitch(true);
+    m_reverseLimit.enableLimitSwitch(true);
   }
   
   public void raise() {
-    m_liftMotor.set(LiftConstants.raiseSpeed);
+    m_liftMotor.set(BallLiftConstants.raiseSpeed);
   }
 
   public void lower() {
-    m_liftMotor.set(LiftConstants.lowerSpeed);
+    m_liftMotor.set(BallLiftConstants.lowerSpeed);
   }
 
   public void stop() {
-    m_liftMotor.set(LiftConstants.stopSpeed);
+    m_liftMotor.set(BallLiftConstants.stopSpeed);
   }
 
   @Override
@@ -41,13 +47,9 @@ public class BallLift extends SubsystemBase {
   }
 
   public void ballLiftLimitSwitch() {
-    m_forwardLimit = m_liftMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
-    m_reverseLimit = m_liftMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyOpen);
 
-    m_forwardLimit.enableLimitSwitch(true);
-    m_reverseLimit.enableLimitSwitch(true);
-    SmartDashboard.putBoolean("BallLiftTop sensor", m_forwardLimit.isLimitSwitchEnabled());
-    SmartDashboard.putBoolean("BallLiftBottem sensor", m_reverseLimit.isLimitSwitchEnabled());
+
+    
   }
 
 }

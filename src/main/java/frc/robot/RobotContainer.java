@@ -37,7 +37,7 @@ public class RobotContainer {
   private final BallLift m_ballLift = new BallLift();
   
   private final Retrieve m_Retrieve = new Retrieve(m_BallMechinism);
-  private final Dispose m_dDispose = new Dispose(m_BallMechinism);
+  private final Dispose m_Dispose = new Dispose(m_BallMechinism);
 
   private final LowerBallLift m_lowerBallLift = new LowerBallLift(m_ballLift);
   private final RaiseBallLift m_raiseBallLift = new RaiseBallLift(m_ballLift);
@@ -54,15 +54,17 @@ public class RobotContainer {
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
 
 
-    JoystickButton intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
-    JoystickButton ExtakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
+    JoystickButton m_intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
+    JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
 
     //intake
-    intakeButton.whileHeld(m_Retrieve);
+    m_intakeButton.whileHeld(new Retrieve(m_BallMechinism));
+    m_intakeButton.
 
     //Extake
-    ExtakeButton.whileHeld(m_dDispose);
+    m_extakeButon.whileHeld(new Dispose(m_BallMechinism));
     m_ballLift.setDefaultCommand(new StopBallLift(m_ballLift));
+
   }
 
   /**
