@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.List;
 
 import org.photonvision.PhotonCamera;
@@ -62,7 +61,7 @@ public class Camera extends SubsystemBase {
   m_camera.setPipelineIndex(pipenum);
   }
   
-  private List<PhotonTrackedTarget> gettargetsList() throws FileNotFoundException{
+  private List<PhotonTrackedTarget> HEADgetsList() throws FileNotFoundException{
      
     if(seetarget() == true){
     var m_result = m_camera.getLatestResult();

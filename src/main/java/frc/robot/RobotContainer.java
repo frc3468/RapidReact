@@ -12,22 +12,16 @@ import frc.robot.commands.Dispose;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Retrieve;
 import frc.robot.commands.TankDrive;
-<<<<<<< HEAD
 import frc.robot.subsystems.BallMechinism;
-=======
 import frc.robot.commands.LowerBallLift;
 import frc.robot.commands.RaiseBallLift;
 import frc.robot.commands.StopBallLift;
->>>>>>> origin/Lift
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.BallLift;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-=======
 import edu.wpi.first.wpilibj2.command.Subsystem;
->>>>>>> origin/Lift
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -58,7 +52,6 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
-<<<<<<< HEAD
 
     JoystickButton intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
     JoystickButton ExtakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
@@ -68,9 +61,7 @@ public class RobotContainer {
 
     //Extake
     ExtakeButton.whileHeld(m_dDispose);
-=======
     m_ballLift.setDefaultCommand(new StopBallLift(m_ballLift));
->>>>>>> origin/Lift
   }
 
   /**

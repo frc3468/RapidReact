@@ -43,4 +43,7 @@ public final class Constants {
         public static final double lowerSpeed = -1.0;
         public static final double stopSpeed = 0.0;
     }
+    public static final class AutoConstants {
+        public static final double autospeed = 10;
+    }
 }
