@@ -8,16 +8,17 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.Constants.BallLiftConstants;
 
 import com.revrobotics.SparkMaxLimitSwitch;
+import com.revrobotics.SparkMaxPIDController;
 
 public class BallLift extends SubsystemBase {
   
   private CANSparkMax m_liftMotor;
   private SparkMaxLimitSwitch m_forwardLimit;
   private SparkMaxLimitSwitch m_reverseLimit;
+  private SparkMaxPIDController m_liftPidController;
 
   public BallLift() {
     m_liftMotor = new CANSparkMax(BallLiftConstants.liftMotor,MotorType.kBrushless);     
@@ -27,6 +28,15 @@ public class BallLift extends SubsystemBase {
     
     m_forwardLimit.enableLimitSwitch(true);
     m_reverseLimit.enableLimitSwitch(true);
+
+    m_liftPidController = m_liftMotor.getPIDController();
+
+    m_liftPidController.setP(BallLiftConstants.liftP);
+    m_liftPidController.setI(BallLiftConstants.liftI);
+    m_liftPidController.setD(BallLiftConstants.liftD);
+    m_liftPidController.setIZone(BallLiftConstants.liftIZone);
+    m_liftPidController.setFF(BallLiftConstants.liftFF);
+    m_liftPidController.setOutputRange(BallLiftConstants.liftMin, BallLiftConstants.liftMax);
   }
   
   public void raise() {
