@@ -5,14 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FrontArm;
+import frc.robot.subsystems.RightArm;
 
-public class FrontClimbAscention extends CommandBase {
-  private FrontArm m_subsystem;
-  /** Creates a new FrontClimbAscention. */
-  public FrontClimbAscention(FrontArm subsystem) {
+public class RightClimbStop extends CommandBase {
+  private RightArm m_subsystem;
+  /** Creates a new BackClimbStop. */
+  public RightClimbStop(RightArm subsytem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_subsystem = subsystem;
+    m_subsystem = subsytem;
 
     addRequirements(m_subsystem);
   }
@@ -24,13 +24,13 @@ public class FrontClimbAscention extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.ascendFrontArm();
+    m_subsystem.stopBackArm();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.stopFrontArm();
+    m_subsystem.stopBackArm();
   }
 
   // Returns true when the command should end.

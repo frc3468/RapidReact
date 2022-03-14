@@ -5,12 +5,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FrontArm;
+import frc.robot.subsystems.LeftArm;
 
-public class FrontClimbStop extends CommandBase {
-  private FrontArm m_subsystem;
+public class LeftClimbStop extends CommandBase {
+  private LeftArm m_subsystem;
   /** Creates a new ClimbStop. */
-  public FrontClimbStop(FrontArm subsystem) {
+  public LeftClimbStop(LeftArm subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_subsystem = subsystem;
 

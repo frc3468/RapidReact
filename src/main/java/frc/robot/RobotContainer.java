@@ -8,18 +8,18 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.m_driverControllerConstants;
-import frc.robot.commands.BackClimbAscention;
-import frc.robot.commands.BackClimbDescention;
-import frc.robot.commands.BackClimbStop;
+import frc.robot.commands.RightClimbAscention;
+import frc.robot.commands.RightClimbDescention;
+import frc.robot.commands.RightClimbStop;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.FrontClimbAscention;
-import frc.robot.commands.FrontClimbDescention;
-import frc.robot.commands.FrontClimbStop;
+import frc.robot.commands.LeftClimbAscention;
+import frc.robot.commands.LeftClimbDescention;
+import frc.robot.commands.LeftClimbStop;
 import frc.robot.commands.TankDrive;
-import frc.robot.subsystems.BackArm;
+import frc.robot.subsystems.RightArm;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.FrontArm;
+import frc.robot.subsystems.LeftArm;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -33,14 +33,14 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain m_driveTrain = new Drivetrain();
-  private final FrontArm m_frontArm = new FrontArm();
-  private final FrontClimbAscention m_frontClimbAscention = new FrontClimbAscention(m_frontArm);
-  private final FrontClimbDescention m_frontClimbDescention = new FrontClimbDescention(m_frontArm);
-  private final FrontClimbStop m_frontClimbStop = new FrontClimbStop(m_frontArm);
-  private final BackArm m_backArm = new BackArm();
-  private final BackClimbAscention m_backClimbAscention = new BackClimbAscention(m_backArm);
-  private final BackClimbDescention m_backClimbDescention = new BackClimbDescention(m_backArm);
-  private final BackClimbStop m_backClimbStop = new BackClimbStop(m_backArm);
+  private final LeftArm m_leftArm = new LeftArm();
+  private final LeftClimbAscention m_leftClimbAscention = new LeftClimbAscention(m_leftArm);
+  private final LeftClimbDescention m_leftClimbDescention = new LeftClimbDescention(m_leftArm);
+  private final LeftClimbStop m_leftClimbStop = new LeftClimbStop(m_leftArm);
+  private final RightArm m_rightArm = new RightArm();
+  private final RightClimbAscention m_rightClimbAscention = new RightClimbAscention(m_rightArm);
+  private final RightClimbDescention m_rightClimbDescention = new RightClimbDescention(m_rightArm);
+  private final RightClimbStop m_rightClimbStop = new RightClimbStop(m_rightArm);
 
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
 
@@ -52,19 +52,19 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
-    m_frontArm.setDefaultCommand(new FrontClimbStop(m_frontArm));
-    m_backArm.setDefaultCommand(new BackClimbStop(m_backArm));
+    m_leftArm.setDefaultCommand(new LeftClimbStop(m_leftArm));
+    m_rightArm.setDefaultCommand(new RightClimbStop(m_rightArm));
 
-    JoystickButton m_FrontArmDescentButton = new JoystickButton(m_driverController,m_driverControllerConstants.frontArmDescend);
-    JoystickButton m_FrontArmAscentButton = new JoystickButton(m_driverController,m_driverControllerConstants.frontArmAscend);
-    JoystickButton m_BackArmDescentButton = new JoystickButton(m_driverController,m_driverControllerConstants.backArmDescend);
-    JoystickButton m_BackArmAscentButton = new JoystickButton(m_driverController,m_driverControllerConstants.backArmAscend);
+    JoystickButton m_LeftArmDescentButton = new JoystickButton(m_driverController,m_driverControllerConstants.leftArmDescend);
+    JoystickButton m_LeftArmAscentButton = new JoystickButton(m_driverController,m_driverControllerConstants.leftArmAscend);
+    JoystickButton m_RightArmDescentButton = new JoystickButton(m_driverController,m_driverControllerConstants.rightArmDescend);
+    JoystickButton m_RightArmAscentButton = new JoystickButton(m_driverController,m_driverControllerConstants.rightArmAscend);
 
-    m_FrontArmDescentButton.whileHeld(new FrontClimbDescention(m_frontArm));
-    m_FrontArmAscentButton.whileHeld(new FrontClimbDescention(m_frontArm));
+    m_LeftArmDescentButton.whenPressed(new LeftClimbDescention(m_leftArm));
+    m_LeftArmAscentButton.whenPressed(new LeftClimbDescention(m_leftArm));
     
-    m_BackArmDescentButton.whenPressed(new BackClimbAscention(m_backArm));
-    m_BackArmAscentButton.whenPressed(new BackClimbAscention(m_backArm));
+    m_RightArmDescentButton.whenPressed(new RightClimbAscention(m_rightArm));
+    m_RightArmAscentButton.whenPressed(new RightClimbAscention(m_rightArm));
   }
 
   /**

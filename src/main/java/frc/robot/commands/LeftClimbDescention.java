@@ -5,12 +5,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BackArm;
+import frc.robot.subsystems.LeftArm;
 
-public class BackClimbAscention extends CommandBase {
-  private BackArm m_subsystem;
-  /** Creates a new BackClimbAscention. */
-  public BackClimbAscention(BackArm subsystem) {
+public class LeftClimbDescention extends CommandBase {
+  private LeftArm m_subsystem;
+  /** Creates a new FrontClimbDescention. */
+  public LeftClimbDescention(LeftArm subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_subsystem = subsystem;
 
@@ -24,13 +24,13 @@ public class BackClimbAscention extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.ascendBackArm();
+    m_subsystem.descendFrontArm();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.stopBackArm();
+    m_subsystem.stopFrontArm();
   }
 
   // Returns true when the command should end.

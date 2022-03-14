@@ -25,33 +25,42 @@ public final class Constants {
         public static final int rightSparkMaxCANID = 2;
     }
 
-    public static final class FrontArmConstants {
-        public static final int frontSparkMaxID = 3;
+    public static final class LeftArmConstants {
+        public static final int leftSparkMaxID = 3;
         public static final double ascensionSpeed = 1.0;
         public static final double descensionSpeed = -1.0;
         public static final double stopSpeed = 0.0;
+        public static final double leftArmP = 1.0;
+        public static final double leftArmI = 1.0;
+        public static final double leftArmD = 1.0;
+        public static final double leftArmIZone = 1.0;
+        public static final double leftArmFF = 1.0;
+        public static final double leftArmMin = 1.0;
+        public static final double leftArmMax = 0.0;
+        public static final double upPIDReference = 10.0;
+        public static final double downPIDReference = 0.0;
     }
 
-    public static final class BackArmConstants {
-        public static final int backSparkMaxID = 4;
+    public static final class RightArmConstants {
+        public static final int rightSparkMaxID = 4;
         public static final double ascensionSpeed = 1.0;
         public static final double descensionSpeed = -1.0;
         public static final double stopSpeed = 0.0;
-        public static final double backArmP = 1.0;
-        public static final double backArmI = 1.0;
-        public static final double backArmD = 1.0;
-        public static final double backArmIZone = 1.0;
-        public static final double backArmFF = 1.0;        
-        public static final double backArmMin = 1.0;
-        public static final double backArmMax = 0.0;
+        public static final double rightArmP = 1.0;
+        public static final double rightArmI = 1.0;
+        public static final double rightArmD = 1.0;
+        public static final double rightArmIZone = 1.0;
+        public static final double rightArmFF = 1.0;
+        public static final double rightArmMin = 1.0;
+        public static final double rightArmMax = 0.0;
         public static final double upPIDReference = 10.0;
         public static final double downPIDReference = 0.0;
     }
 
     public static final class m_driverControllerConstants {
-        public static final int frontArmAscend = XboxController.Button.kLeftBumper.value;
-        public static final int frontArmDescend = XboxController.Axis.kLeftTrigger.value;
-        public static final int backArmAscend = XboxController.Button.kRightBumper.value;
-        public static final int backArmDescend = XboxController.Axis.kRightTrigger.value;
+        public static final int leftArmAscend = XboxController.Button.kLeftBumper.value;
+        public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
+        public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
+        public static final int rightArmDescend = XboxController.Axis.kRightTrigger.value;
     }
 }
