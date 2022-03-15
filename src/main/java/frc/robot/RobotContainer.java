@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.m_driverControllerConstants;
 import frc.robot.commands.Dispose;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Retrieve;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.autonomous.BackupAuto;
 import frc.robot.subsystems.BallMechinism;
 import frc.robot.commands.LowerBallLift;
 import frc.robot.commands.RaiseBallLift;
@@ -44,8 +44,9 @@ public class RobotContainer {
   private final StopBallLift m_stopBallLift = new StopBallLift(m_ballLift);
 
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
+  // used the default m_auto to avoid probable headache of variable names.
+  private final BackupAuto m_autoCommand = new BackupAuto(m_driveTrain , m_ballLift, m_BallMechinism);
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
