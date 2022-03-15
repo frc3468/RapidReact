@@ -59,6 +59,7 @@ public class RobotContainer {
 
     //intake
     m_intakeButton.whileHeld(new Retrieve(m_BallMechinism));
+    m_intakeButton.whileHeld(new LowerBallLift(m_ballLift));
 
     //Extake
     m_extakeButton.whileHeld(new Dispose(m_BallMechinism));

@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxAnalogSensor;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -12,6 +13,7 @@ import frc.robot.Constants.BallLiftConstants;
 
 import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.ControlType;
 
 public class BallLift extends SubsystemBase {
   
@@ -19,6 +21,7 @@ public class BallLift extends SubsystemBase {
   private SparkMaxLimitSwitch m_forwardLimit;
   private SparkMaxLimitSwitch m_reverseLimit;
   private SparkMaxPIDController m_liftPidController;
+  public SparkMaxAnalogSensor m_potentiometor;
 
   public BallLift() {
     m_liftMotor = new CANSparkMax(BallLiftConstants.liftMotor,MotorType.kBrushless);     
@@ -30,6 +33,7 @@ public class BallLift extends SubsystemBase {
     m_reverseLimit.enableLimitSwitch(true);
 
     m_liftPidController = m_liftMotor.getPIDController();
+    m_potentiometor = m_liftMotor.getAnalog(SparkMaxAnalogSensor.Mode.kAbsolute);
 
     m_liftPidController.setP(BallLiftConstants.liftP);
     m_liftPidController.setI(BallLiftConstants.liftI);
@@ -37,14 +41,19 @@ public class BallLift extends SubsystemBase {
     m_liftPidController.setIZone(BallLiftConstants.liftIZone);
     m_liftPidController.setFF(BallLiftConstants.liftFF);
     m_liftPidController.setOutputRange(BallLiftConstants.liftMin, BallLiftConstants.liftMax);
+    m_liftPidController.setFeedbackDevice(m_potentiometor);
+
+    m_liftMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+    m_liftMotor.burnFlash();
   }
+
   
   public void raise() {
-    m_liftMotor.set(BallLiftConstants.raiseSpeed);
+    m_liftPidController.setReference(BallLiftConstants.upPIDReference, ControlType.kPosition);
   }
 
   public void lower() {
-    m_liftMotor.set(BallLiftConstants.lowerSpeed);
+    m_liftPidController.setReference(BallLiftConstants.downPIDReference, ControlType.kPosition);
   }
 
   public void stop() {

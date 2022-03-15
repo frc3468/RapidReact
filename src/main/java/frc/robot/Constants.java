@@ -45,12 +45,12 @@ public final class Constants {
         public static final double liftP = 1.0;
         public static final double liftI = 1.0;
         public static final double liftD = 1.0;
-        public static final double liftIZone = 1.0;
-        public static final double liftFF = 1.0;
-        public static final double liftMin = 1.0;
-        public static final double liftMax = 1.0;
-        public static final double upPIDReference = 1.0;
-        public static final double downPIDReference = 1.0;
+        public static final double liftIZone = 0.0;
+        public static final double liftFF = 0.0;
+        public static final double liftMin = 0.0;
+        public static final double liftMax = 0.0;
+        public static final double upPIDReference = 0.0;
+        public static final double downPIDReference = 0.0;
 
         
 
