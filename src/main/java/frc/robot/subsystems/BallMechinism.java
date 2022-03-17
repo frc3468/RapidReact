@@ -26,6 +26,10 @@ public class BallMechinism extends SubsystemBase {
     m_spinMotor.set(BallMechinismConstants.extakeSpeed);
   }
 
+  public void IdleBall() {
+    m_spinMotor.set(BallMechinismConstants.idleSpeed);
+  }
+
   public void Stop() {
     m_spinMotor.set(BallMechinismConstants.stopSpeed);
   }

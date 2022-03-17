@@ -4,10 +4,13 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.m_driverControllerConstants;
+import frc.robot.commands.BallIdle;
 import frc.robot.commands.Dispose;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Retrieve;
@@ -52,7 +55,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
-
+    m_BallMechinism.setDefaultCommand(new BallIdle(m_BallMechinism));
 
     JoystickButton m_intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
     JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
@@ -60,6 +63,7 @@ public class RobotContainer {
     //intake
     m_intakeButton.whileHeld(new Retrieve(m_BallMechinism));
     m_intakeButton.whileHeld(new LowerBallLift(m_ballLift));
+    m_intakeButton.whenReleased(new RaiseBallLift(m_ballLift));
 
     //Extake
     m_extakeButton.whileHeld(new Dispose(m_BallMechinism));
