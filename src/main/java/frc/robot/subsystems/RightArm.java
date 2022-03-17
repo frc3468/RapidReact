@@ -46,17 +46,23 @@ public class RightArm extends SubsystemBase {
     m_rightArmNEO.burnFlash();
   }
 
-  public void ascendBackArm(){
-    m_rightArmNEO.set(RightArmConstants.ascensionSpeed);
+  public void ascendRightArmPID() {
     m_backPIDController.setReference(RightArmConstants.upPIDReference, ControlType.kPosition);
   }
 
-  public void descendBackArm(){
-    m_rightArmNEO.set(RightArmConstants.descensionSpeed);
+  public void descendRightArmPID() {
     m_backPIDController.setReference(RightArmConstants.downPIDReference, ControlType.kPosition);
   }
 
-  public void stopBackArm(){
+  public void setRightAscendSpeed() {
+    m_rightArmNEO.set(RightArmConstants.ascensionSpeed);
+  }
+
+  public void setRightDescendSpeed() {
+    m_rightArmNEO.set(RightArmConstants.descensionSpeed);    
+  }
+
+  public void stopRightArm() {
     m_rightArmNEO.set(RightArmConstants.stopSpeed);
   }
 

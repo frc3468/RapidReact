@@ -21,6 +21,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LeftArm;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -60,9 +61,15 @@ public class RobotContainer {
     JoystickButton m_RightArmDescentButton = new JoystickButton(m_driverController,m_driverControllerConstants.rightArmDescend);
     JoystickButton m_RightArmAscentButton = new JoystickButton(m_driverController,m_driverControllerConstants.rightArmAscend);
 
+
+    //Together L/R controlls for climbing 
+    /* m_RightArmDescentButton.whenPressed(new ParallelCommandGroup(new LeftClimbDescention(m_leftArm), new RightClimbDescention(m_rightArm)));
+    *  m_RightArmAscentButton.whenPressed(new ParallelCommandGroup(new LeftClimbAscention(m_leftArm), new RightClimbAscention(m_rightArm)));
+    */
+
+    //Separate L/R controlls for climbing
     m_LeftArmDescentButton.whenPressed(new LeftClimbDescention(m_leftArm));
     m_LeftArmAscentButton.whenPressed(new LeftClimbDescention(m_leftArm));
-    
     m_RightArmDescentButton.whenPressed(new RightClimbAscention(m_rightArm));
     m_RightArmAscentButton.whenPressed(new RightClimbAscention(m_rightArm));
   }

@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxLimitSwitch.Type;
@@ -45,18 +46,26 @@ public class LeftArm extends SubsystemBase {
     m_leftArmNEO.burnFlash();
   }
 
-  public void ascendFrontArm(){
+  public void ascendLeftArmPID(){
+    m_backPIDController.setReference(LeftArmConstants.upPIDReference, ControlType.kPosition);
+  }
+
+  public void descendLeftArmPID(){
+    m_backPIDController.setReference(LeftArmConstants.downPIDReference, ControlType.kPosition);
+  }
+
+  public void setRightAscendSpeed() {
     m_leftArmNEO.set(LeftArmConstants.ascensionSpeed);
   }
 
-  public void descendFrontArm(){
-    m_leftArmNEO.set(LeftArmConstants.descensionSpeed);
+  public void setRightDescendSpeed() {
+    m_leftArmNEO.set(LeftArmConstants.descensionSpeed);    
   }
 
-  public void stopFrontArm(){
+  public void stopLeftArm(){
     m_leftArmNEO.set(LeftArmConstants.stopSpeed);
   }
-  
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

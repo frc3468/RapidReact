@@ -24,13 +24,13 @@ public class RightClimbAscention extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.ascendBackArm();
+    m_subsystem.ascendRightArmPID();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.stopBackArm();
+    m_subsystem.stopRightArm();
   }
 
   // Returns true when the command should end.
