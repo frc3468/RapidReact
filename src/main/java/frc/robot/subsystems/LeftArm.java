@@ -22,6 +22,7 @@ public class LeftArm extends SubsystemBase {
   private SparkMaxPIDController m_backPIDController;
   private SparkMaxLimitSwitch m_reverseLimitSwitch;
   private RelativeEncoder m_leftEncoder;
+  private double m_setPoint;
 
   /** Creates a new Climbing. */
   public LeftArm() {
@@ -46,12 +47,14 @@ public class LeftArm extends SubsystemBase {
     m_leftArmNEO.burnFlash();
   }
 
-  public void ascendLeftArmPID(){
+  public void topLeftArmPID(){
     m_backPIDController.setReference(LeftArmConstants.upPIDReference, ControlType.kPosition);
+    m_setPoint = LeftArmConstants.upPIDReference;
   }
 
-  public void descendLeftArmPID(){
+  public void bottomLeftArmPID(){
     m_backPIDController.setReference(LeftArmConstants.downPIDReference, ControlType.kPosition);
+    m_setPoint = LeftArmConstants.downPIDReference; 
   }
 
   public void setRightAscendSpeed() {
@@ -64,6 +67,18 @@ public class LeftArm extends SubsystemBase {
 
   public void stopLeftArm(){
     m_leftArmNEO.set(LeftArmConstants.stopSpeed);
+  }
+
+  public boolean leftLimitSwitch() {
+    return m_reverseLimitSwitch.isPressed();
+  }
+
+  public void setHome() {
+    m_leftEncoder.setPosition(0.0);
+  }
+
+  public boolean isAtSetPoint() {
+    return Math.abs(m_setPoint - m_leftEncoder.getPosition()) <= LeftArmConstants.leftPIDTolerance;
   }
 
   @Override

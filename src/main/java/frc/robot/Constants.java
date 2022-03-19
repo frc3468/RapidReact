@@ -39,6 +39,7 @@ public final class Constants {
         public static final double leftArmMax = 0.25;
         public static final double upPIDReference = 10.0;
         public static final double downPIDReference = 0.0;
+        public static final double leftPIDTolerance = 1.0;
     }
 
     public static final class RightArmConstants {
@@ -55,6 +56,7 @@ public final class Constants {
         public static final double rightArmMax = 0.25;
         public static final double upPIDReference = 10.0;
         public static final double downPIDReference = 0.0;
+        public static final double rightPIDTolerance = 1.0;
     }
 
     public static final class m_driverControllerConstants {

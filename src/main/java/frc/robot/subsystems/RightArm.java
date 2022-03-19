@@ -22,6 +22,7 @@ public class RightArm extends SubsystemBase {
   private SparkMaxPIDController m_backPIDController;
   private SparkMaxLimitSwitch m_reverseLimitSwitch;
   private RelativeEncoder m_rightEncoder;
+  private double m_setPoint;
 
   /** Creates a new BackArm. */
   public RightArm() {
@@ -46,12 +47,14 @@ public class RightArm extends SubsystemBase {
     m_rightArmNEO.burnFlash();
   }
 
-  public void ascendRightArmPID() {
+  public void topRightArmPID() {
     m_backPIDController.setReference(RightArmConstants.upPIDReference, ControlType.kPosition);
+    m_setPoint = RightArmConstants.upPIDReference;
   }
 
-  public void descendRightArmPID() {
+  public void bottomRightArmPID() {
     m_backPIDController.setReference(RightArmConstants.downPIDReference, ControlType.kPosition);
+    m_setPoint = RightArmConstants.downPIDReference;
   }
 
   public void setRightAscendSpeed() {
@@ -64,6 +67,18 @@ public class RightArm extends SubsystemBase {
 
   public void stopRightArm() {
     m_rightArmNEO.set(RightArmConstants.stopSpeed);
+  }
+
+  public boolean rightLimitSwitch() {
+    return m_reverseLimitSwitch.isPressed();
+  }
+
+  public void setHome() {
+    m_rightEncoder.setPosition(0.0);
+  }
+
+  public boolean isAtSetPoint() {
+    return Math.abs(m_setPoint - m_rightEncoder.getPosition()) <= RightArmConstants.rightPIDTolerance;
   }
 
   @Override

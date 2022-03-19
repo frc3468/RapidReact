@@ -7,10 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LeftArm;
 
-public class LeftClimbDescention extends CommandBase {
+public class LeftClimbTop extends CommandBase {
   private LeftArm m_subsystem;
-  /** Creates a new FrontClimbDescention. */
-  public LeftClimbDescention(LeftArm subsystem) {
+  /** Creates a new FrontClimbAscention. */
+  public LeftClimbTop(LeftArm subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_subsystem = subsystem;
 
@@ -24,7 +24,7 @@ public class LeftClimbDescention extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.descendLeftArmPID();
+    m_subsystem.topLeftArmPID();
   }
 
   // Called once the command ends or is interrupted.
@@ -36,6 +36,6 @@ public class LeftClimbDescention extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_subsystem.isAtSetPoint();
   }
 }
