@@ -5,11 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.BallLift;
 
 public class ManualLowerBall extends CommandBase {
+  
+  private BallLift m_subsystem;
   /** Creates a new ManualLowerBall. */
-  public ManualLowerBall() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public ManualLowerBall(BallLift subsystem) {
+    m_subsystem = subsystem;
+    addRequirements(m_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -18,11 +22,15 @@ public class ManualLowerBall extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_subsystem.lowerManual();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_subsystem.stop();
+  }
 
   // Returns true when the command should end.
   @Override

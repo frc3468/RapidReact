@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxAnalogSensor;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -22,6 +23,8 @@ public class BallLift extends SubsystemBase {
   private SparkMaxLimitSwitch m_reverseLimit;
   private SparkMaxPIDController m_liftPidController;
   public SparkMaxAnalogSensor m_potentiometor;
+  private double m_setPoint;
+  private RelativeEncoder m_ballLiftEncoder;
 
   public BallLift() {
     m_liftMotor = new CANSparkMax(BallLiftConstants.liftMotor,MotorType.kBrushless);     
@@ -31,6 +34,8 @@ public class BallLift extends SubsystemBase {
     
     m_forwardLimit.enableLimitSwitch(true);
     m_reverseLimit.enableLimitSwitch(true);
+
+    m_ballLiftEncoder = m_liftMotor.getEncoder();
 
     m_liftPidController = m_liftMotor.getPIDController();
     m_potentiometor = m_liftMotor.getAnalog(SparkMaxAnalogSensor.Mode.kAbsolute);
@@ -50,10 +55,12 @@ public class BallLift extends SubsystemBase {
   
   public void raise() {
     m_liftPidController.setReference(BallLiftConstants.upPIDReference, ControlType.kPosition);
+    m_setPoint = BallLiftConstants.upPIDReference;
   }
 
   public void lower() {
     m_liftPidController.setReference(BallLiftConstants.downPIDReference, ControlType.kPosition);
+    m_setPoint = BallLiftConstants.downPIDReference; 
   }
 
   public void raiseManual() {
@@ -66,6 +73,9 @@ public class BallLift extends SubsystemBase {
 
   public void stop() {
     m_liftMotor.set(BallLiftConstants.stopSpeed);
+  }
+  public boolean isAtSetPoint() {
+    return Math.abs(m_setPoint - m_ballLiftEncoder.getPosition()) <= BallLiftConstants.liftPIDTolorence;
   }
 
   @Override

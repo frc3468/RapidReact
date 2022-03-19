@@ -30,15 +30,16 @@ public final class Constants {
         public static final int rightSparkMaxCANID = 2;
     }
     public static final class BallMechinismConstants {
-        public static final int spinSparkMaxCANID = 3;
+        public static final int spinSparkMaxCANID = 6;
         public static final double intakeSpeed = 0.4;
         public static final double extakeSpeed = -0.4;
+        public static final double idleSpeed = 0.1;
         public static final double stopSpeed = 0.0;
     }
 
 
     public static final class BallLiftConstants {
-        public static final int liftMotor = 3;
+        public static final int liftMotor = 5;
         public static final double raiseSpeed = 1.0;
         public static final double lowerSpeed = -1.0;
         public static final double stopSpeed = 0.0;
@@ -51,8 +52,6 @@ public final class Constants {
         public static final double liftMax = 0.0;
         public static final double upPIDReference = 0.0;
         public static final double downPIDReference = 0.0;
-
-        
-
+        public static final double liftPIDTolorence = 1.0;
     }
 }
