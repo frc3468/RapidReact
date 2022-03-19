@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.m_driverControllerConstants;
+import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.BallIdle;
 import frc.robot.commands.Dispose;
 import frc.robot.commands.ExampleCommand;
@@ -16,6 +17,8 @@ import frc.robot.commands.Retrieve;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.BallMechinism;
 import frc.robot.commands.LowerBallLift;
+import frc.robot.commands.ManualLowerBall;
+import frc.robot.commands.ManualRaiseBall;
 import frc.robot.commands.RaiseBallLift;
 import frc.robot.commands.StopBallLift;
 import frc.robot.subsystems.Drivetrain;
@@ -57,11 +60,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    m_driveTrain.setDefaultCommand(new TankDrive(m_driveTrain, m_driverController::getLeftY, m_driverController::getRightY));
+    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()->-1*m_driverController.getLeftX(), m_driverController::getLeftY));
     m_ballMechinism.setDefaultCommand(new BallIdle(m_ballMechinism));
 
     JoystickButton m_intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
     JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
+    JoystickButton m_downButton = new JoystickButton(m_driverController, m_driverControllerConstants.downButton);
+    JoystickButton m_upbButton = new JoystickButton(m_driverController, m_driverControllerConstants.upButton);
 
     //intake
     m_intakeButton.whileHeld(new ParallelCommandGroup(
@@ -73,8 +78,11 @@ public class RobotContainer {
     m_extakeButton.whileHeld(new SequentialCommandGroup(
       new RaiseBallLift(m_ballLift),
       new Dispose(m_ballMechinism)
-      ));
-    
+    ));
+
+    m_upbButton.whileHeld(new ManualRaiseBall(m_ballLift));
+    m_downButton.whileHeld(new ManualLowerBall(m_ballLift));
+
     m_ballLift.setDefaultCommand(new StopBallLift(m_ballLift));
   }
 
