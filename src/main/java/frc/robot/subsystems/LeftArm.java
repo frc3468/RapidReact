@@ -57,11 +57,11 @@ public class LeftArm extends SubsystemBase {
     m_setPoint = LeftArmConstants.downPIDReference; 
   }
 
-  public void setRightAscendSpeed() {
+  public void setLeftAscendSpeed() {
     m_leftArmNEO.set(LeftArmConstants.ascensionSpeed);
   }
 
-  public void setRightDescendSpeed() {
+  public void setLeftDescendSpeed() {
     m_leftArmNEO.set(LeftArmConstants.descensionSpeed);    
   }
 
@@ -74,7 +74,7 @@ public class LeftArm extends SubsystemBase {
   }
 
   public void setHome() {
-    m_leftEncoder.setPosition(0.0);
+    m_leftEncoder.setPosition(2.0);
   }
 
   public boolean isAtSetPoint() {

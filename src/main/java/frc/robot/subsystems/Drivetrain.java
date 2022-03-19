@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -23,9 +24,16 @@ public class Drivetrain extends SubsystemBase {
   public Drivetrain() {
     m_leftNEO = new CANSparkMax(DrivetrainConstants.leftSparkMaxCANID,MotorType.kBrushless);
     m_rightNEO = new CANSparkMax(DrivetrainConstants.rightSparkMaxCANID,MotorType.kBrushless);
-    m_rightNEO.setInverted(true);
+    m_leftNEO.setInverted(true);
+    m_rightNEO.setInverted(false);
+
+    m_leftNEO.setIdleMode(IdleMode.kCoast);
+    m_rightNEO.setIdleMode(IdleMode.kCoast);
 
     m_diffDrive = new DifferentialDrive(m_leftNEO, m_rightNEO);
+
+    m_leftNEO.burnFlash();
+    m_rightNEO.burnFlash();
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed) {

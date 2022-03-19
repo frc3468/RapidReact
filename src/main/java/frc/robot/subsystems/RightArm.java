@@ -44,6 +44,7 @@ public class RightArm extends SubsystemBase {
 
     m_rightArmNEO.setIdleMode(IdleMode.kBrake);
 
+    m_rightArmNEO.setInverted(true);
     m_rightArmNEO.burnFlash();
   }
 
@@ -74,7 +75,7 @@ public class RightArm extends SubsystemBase {
   }
 
   public void setHome() {
-    m_rightEncoder.setPosition(0.0);
+    m_rightEncoder.setPosition(2.0);
   }
 
   public boolean isAtSetPoint() {

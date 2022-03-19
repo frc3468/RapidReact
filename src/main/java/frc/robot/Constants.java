@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.XboxController;
 public final class Constants {
 
     public static final class OperatorConstants {
-        public static final int driverControllerUSB = 1;
+        public static final int driverControllerUSB = 0;
     }
 
     public static final class DrivetrainConstants {
@@ -44,7 +44,7 @@ public final class Constants {
 
     public static final class RightArmConstants {
         public static final int rightSparkMaxID = 4;
-        public static final double ascensionSpeed = 0.25;
+        public static final double ascensionSpeed = 0.2;
         public static final double descensionSpeed = -0.25;
         public static final double stopSpeed = 0.0;
         public static final double rightArmP = 1.0;

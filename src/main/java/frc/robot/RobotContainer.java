@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.m_driverControllerConstants;
 import frc.robot.commands.RightClimbTop;
+import frc.robot.commands.SetLeftArmClimbSpeed;
+import frc.robot.commands.SetRightArmClimbSpeed;
 import frc.robot.commands.RightClimbBottom;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LeftClimbArmHome;
@@ -79,9 +81,11 @@ public class RobotContainer {
     /* m_LeftArmBottomButton.whileHeld(new LeftClimbBottom(m_leftArm));
     *  m_LeftArmTopButton.whileHeld(new LeftClimbTop(m_leftArm));
     *  m_RightArmBottomButton.whileHeld(new RightClimbBottom(m_rightArm));
-    *  m_RightArmTopButton.whileHeld(new RightClimbTop(m_rightArm));
+    *  m_RightArmTopButton.whileHeld(new SetLeftArmClimbSpeed(m_leftArm));
     */
   }
+
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
