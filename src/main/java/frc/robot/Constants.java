@@ -18,6 +18,7 @@ public final class Constants {
 
     public static final class OperatorConstants {
         public static final int driverControllerUSB = 0;
+        public static final int overrideControllerUSB = 1;
     }
 
     public static final class DrivetrainConstants {
@@ -60,9 +61,11 @@ public final class Constants {
     }
 
     public static final class m_driverControllerConstants {
-        public static final int leftArmAscend = XboxController.Button.kLeftBumper.value;
-        public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
-        public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
-        public static final int rightArmDescend = XboxController.Axis.kRightTrigger.value;
+        public static final int climbUpButton = XboxController.Button.kRightBumper.value;
+        public static final int climbDownButton = XboxController.Axis.kRightTrigger.value;
+        public static final int leftArmAscendOverrideButton = XboxController.Button.kLeftBumper.value;
+        public static final int leftArmDescendOverrideButton = XboxController.Axis.kLeftTrigger.value;
+        public static final int rightArmAscendOverrideButton = XboxController.Button.kRightBumper.value;
+        public static final int rightArmDescendOverrideButton = XboxController.Axis.kRightTrigger.value;
     }
 }
