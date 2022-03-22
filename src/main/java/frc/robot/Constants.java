@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -15,6 +16,19 @@ import edu.wpi.first.wpilibj.XboxController;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    public static final class m_driverControllerConstants {
+        public static final int intakeButton = XboxController.Button.kA.value;
+        public static final int extakeButton = XboxController.Button.kB.value;
+        public static final int downButton = XboxController.Button.kX.value;
+        public static final int upButton = XboxController.Button.kY.value;
+
+        public static final int leftArmAscend = XboxController.Button.kLeftBumper.value;
+        public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
+        public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
+        public static final int rightArmDescend = XboxController.Axis.kRightTrigger.value;
+
+    }
 
     public static final class OperatorConstants {
         public static final int driverControllerUSB = 0;
@@ -58,11 +72,30 @@ public final class Constants {
         public static final double downPIDReference = 0.0;
         public static final double rightPIDTolerance = 1.0;
     }
+    
+    public static final class BallMechinismConstants {
+        public static final int spinSparkMaxCANID = 6;
+        public static final double intakeSpeed = 0.4;
+        public static final double extakeSpeed = -0.4;
+        public static final double idleSpeed = 0.075;
+        public static final double stopSpeed = 0.0;
+    }
 
-    public static final class m_driverControllerConstants {
-        public static final int leftArmAscend = XboxController.Button.kLeftBumper.value;
-        public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
-        public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
-        public static final int rightArmDescend = XboxController.Axis.kRightTrigger.value;
+
+    public static final class BallLiftConstants {
+        public static final int liftMotor = 5;
+        public static final double raiseSpeed = 0.2;
+        public static final double lowerSpeed = -0.2;
+        public static final double stopSpeed = 0.0;
+        public static final double liftP = 3.0;
+        public static final double liftI = 0.0;
+        public static final double liftD = 0.0;
+        public static final double liftIZone = 0.0;
+        public static final double liftFF = 0.0;
+        public static final double liftMin = -1.0;
+        public static final double liftMax = 1.0;
+        public static final double upPIDReference = 2.4;
+        public static final double downPIDReference = 0.17;
+        public static final double liftPIDTolorence = 0.1;
     }
 }
