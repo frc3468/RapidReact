@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxLimitSwitch.Type;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.LeftArmConstants;
 
@@ -74,7 +75,7 @@ public class LeftArm extends SubsystemBase {
   }
 
   public void setHome() {
-    m_leftEncoder.setPosition(2.0);
+    m_leftEncoder.setPosition(0.0);
   }
 
   public boolean isAtSetPoint() {
@@ -84,5 +85,7 @@ public class LeftArm extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putBoolean("Left Arm Limit Switch", leftLimitSwitch());
+    SmartDashboard.putNumber("Left Arm Position", m_leftEncoder.getPosition());
   }
 }

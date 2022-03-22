@@ -32,6 +32,7 @@ public final class Constants {
         public static final int leftArmDescendOverrideButton = XboxController.Axis.kLeftTrigger.value;
         public static final int rightArmAscendOverrideButton = XboxController.Button.kRightBumper.value;
         public static final int rightArmDescendOverrideButton = XboxController.Axis.kRightTrigger.value;
+        public static final int homingButton = XboxController.Button.kRightBumper.value;
     }
 
     public static final class OperatorConstants {
@@ -51,15 +52,15 @@ public final class Constants {
         public static final double ascensionSpeed = 0.25;
         public static final double descensionSpeed = -0.25;
         public static final double stopSpeed = 0.0;
-        public static final double leftArmP = 1.0;
-        public static final double leftArmI = 1.0;
-        public static final double leftArmD = 1.0;
-        public static final double leftArmIZone = 1.0;
-        public static final double leftArmFF = 1.0;
-        public static final double leftArmMin = -0.25;
-        public static final double leftArmMax = 0.25;
-        public static final double upPIDReference = 10.0;
-        public static final double downPIDReference = 0.0;
+        public static final double leftArmP = 3.0;
+        public static final double leftArmI = 0.0;
+        public static final double leftArmD = 0.0;
+        public static final double leftArmIZone = 0.0;
+        public static final double leftArmFF = 0.0;
+        public static final double leftArmMin = -0.5;
+        public static final double leftArmMax = 0.5;
+        public static final double upPIDReference = 85.0;
+        public static final double downPIDReference = 1.5;
         public static final double leftPIDTolerance = 1.0;
     }
 
@@ -68,15 +69,15 @@ public final class Constants {
         public static final double ascensionSpeed = 0.2;
         public static final double descensionSpeed = -0.25;
         public static final double stopSpeed = 0.0;
-        public static final double rightArmP = 1.0;
-        public static final double rightArmI = 1.0;
-        public static final double rightArmD = 1.0;
-        public static final double rightArmIZone = 1.0;
-        public static final double rightArmFF = 1.0;
-        public static final double rightArmMin = -0.25;
-        public static final double rightArmMax = 0.25;
-        public static final double upPIDReference = 10.0;
-        public static final double downPIDReference = 0.0;
+        public static final double rightArmP = 3.0;
+        public static final double rightArmI = 0.0;
+        public static final double rightArmD = 0.0;
+        public static final double rightArmIZone = 0.0;
+        public static final double rightArmFF = 0.0;
+        public static final double rightArmMin = -0.5;
+        public static final double rightArmMax = 0.5;
+        public static final double upPIDReference = 85.0;
+        public static final double downPIDReference = 1.5;
         public static final double rightPIDTolerance = 1.0;
     }
     
@@ -90,8 +91,8 @@ public final class Constants {
 
     public static final class BallLiftConstants {
         public static final int liftMotor = 5;
-        public static final double raiseSpeed = 1.0;
-        public static final double lowerSpeed = -1.0;
+        public static final double raiseSpeed = 0.4;
+        public static final double lowerSpeed = -0.4;
         public static final double stopSpeed = 0.0;
         public static final double liftP = 3.0;
         public static final double liftI = 0.0;
@@ -102,6 +103,6 @@ public final class Constants {
         public static final double liftMax = 1.0;
         public static final double upPIDReference = 2.4;
         public static final double downPIDReference = 0.17;
-        public static final double liftPIDTolorence = 0.1;
+        public static final double liftPIDTolorence = 0.01;
     }
 }

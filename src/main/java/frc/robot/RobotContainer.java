@@ -37,6 +37,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LeftArm;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -65,7 +66,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()->-1*m_driverController.getLeftX(), m_driverController::getLeftY));
+    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()-> m_driverController.getLeftY(),()-> -1*m_driverController.getLeftX()));
     m_leftArm.setDefaultCommand(new LeftClimbBottom(m_leftArm).perpetually());
     m_rightArm.setDefaultCommand(new RightClimbBottom(m_rightArm).perpetually());
     m_ballMechinism.setDefaultCommand(new BallIdle(m_ballMechinism));
@@ -84,14 +85,10 @@ public class RobotContainer {
     JoystickButton m_intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
     JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
     JoystickButton m_downButton = new JoystickButton(m_driverController, m_driverControllerConstants.downButton);
-    JoystickButton m_upbButton = new JoystickButton(m_driverController, m_driverControllerConstants.upButton);
-
-    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()-> -1*m_driverController.getLeftX(), ()-> m_driverController.getLeftY()));
-    m_ballMechinism.setDefaultCommand(new BallIdle(m_ballMechinism));
-    m_ballLift.setDefaultCommand(new StopBallLift(m_ballLift));
-
+    JoystickButton m_upButton = new JoystickButton(m_driverController, m_driverControllerConstants.upButton);
     JoystickButton m_overrideExtake = new JoystickButton(m_overridXboxController, OperatorConstants.extakeOverrideButton);
     JoystickButton m_overrideIntake = new JoystickButton(m_overridXboxController, OperatorConstants.intakeOverrideButton);
+    JoystickButton m_homingButtom = new JoystickButton(m_driverController, m_driverControllerConstants.homingButton);
     POVButton m_overrideDown = new POVButton(m_overridXboxController, 180);
     POVButton m_overrideUp = new POVButton(m_overridXboxController, 0);
 
@@ -100,9 +97,9 @@ public class RobotContainer {
     JoystickButton m_bottomPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbDownButton);
 
     //Override Climbing
-    JoystickButton m_leftArmDownButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.leftArmDescendOverrideButton);
+    Button m_leftArmDownButton = new Button(()-> m_overridXboxController.getLeftTriggerAxis() > 0.5);
     JoystickButton m_leftArmUpButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.leftArmAscendOverrideButton);
-    JoystickButton m_rightArmDownButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.rightArmDescendOverrideButton);
+    Button m_rightArmDownButton = new Button(()-> m_overridXboxController.getRightTriggerAxis() > 0.5);
     JoystickButton m_rightArmUpButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.rightArmAscendOverrideButton);
 
     //Homing
@@ -110,11 +107,12 @@ public class RobotContainer {
     Trigger m_rightClimbArmLimitSwitch = new Trigger(() -> m_rightArm.rightLimitSwitch());
     m_leftClimbArmLimitSwitch.whenActive(new LeftClimbArmHome(m_leftArm));
     m_rightClimbArmLimitSwitch.whenActive(new RightClimbArmHome(m_rightArm));
-
+    m_homingButtom.whenPressed(new LeftArmDescendSpeed(m_leftArm).withTimeout(5.0));
+    m_homingButtom.whenPressed(new RightArmDescendSpeed(m_rightArm).withTimeout(5.0));
 
     //Together L/R controls for climbing 
     m_topPositionClimbing.whileHeld(new ParallelCommandGroup(new LeftClimbTop(m_leftArm), new RightClimbTop(m_rightArm)));
-    m_bottomPositionClimbing.whileHeld(new ParallelCommandGroup(new LeftClimbBottom(m_leftArm), new RightClimbBottom(m_rightArm)));
+    // m_bottomPositionClimbing.whileHeld(new ParallelCommandGroup(new LeftClimbBottom(m_leftArm), new RightClimbBottom(m_rightArm)));
 
     //Separate L/R controls for climbing (override)
     m_leftArmDownButton.whileHeld(new LeftArmDescendSpeed(m_leftArm));
@@ -134,8 +132,9 @@ public class RobotContainer {
       new Dispose(m_ballMechinism)
     ));
 
-    m_upbButton.whileHeld(new ManualRaiseBall(m_ballLift));
+    m_upButton.whileHeld(new ManualRaiseBall(m_ballLift));
     m_downButton.whileHeld(new ManualLowerBall(m_ballLift));
+
     //override Extake
     m_overrideExtake.whileHeld(new Dispose(m_ballMechinism));
 
@@ -147,7 +146,6 @@ public class RobotContainer {
 
     //override down
     m_overrideDown.whileHeld(new ManualLowerBall(m_ballLift));
-
   }
 
   /**

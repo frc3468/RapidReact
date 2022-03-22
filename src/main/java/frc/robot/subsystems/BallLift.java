@@ -73,20 +73,17 @@ public class BallLift extends SubsystemBase {
   public void stop() {
     m_liftMotor.set(BallLiftConstants.stopSpeed);
   }
+
   public boolean isAtSetPoint() {
-    return Math.abs(m_setPoint - m_ballLiftEncoder.getPosition()) <= BallLiftConstants.liftPIDTolorence;
+    SmartDashboard.putNumber("SetPoint Number", m_setPoint);
+    SmartDashboard.putNumber("Encoder Number", m_potentiometor.getPosition());
+    SmartDashboard.putNumber("IsAtSetPoint Number", Math.abs(m_setPoint - m_ballLiftEncoder.getPosition()));
+    return (Math.abs(m_setPoint - m_potentiometor.getPosition()) <= BallLiftConstants.liftPIDTolorence);
   }
 
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Ball Lift Position", m_potentiometor.getPosition());
-
+    SmartDashboard.putBoolean("Is at Setpoint", isAtSetPoint());
   }
-
-  public void ballLiftLimitSwitch() {
-
-
-    
-  }
-
 }
