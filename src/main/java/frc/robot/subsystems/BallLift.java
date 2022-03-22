@@ -8,11 +8,9 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxAnalogSensor;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.BallLiftConstants;
-
 import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
@@ -23,7 +21,7 @@ public class BallLift extends SubsystemBase {
   private SparkMaxLimitSwitch m_forwardLimit;
   private SparkMaxLimitSwitch m_reverseLimit;
   private SparkMaxPIDController m_liftPidController;
-  public SparkMaxAnalogSensor m_potentiometor;
+  private SparkMaxAnalogSensor m_potentiometor;
   private double m_setPoint;
   private RelativeEncoder m_ballLiftEncoder;
 

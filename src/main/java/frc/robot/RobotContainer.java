@@ -17,6 +17,7 @@ import frc.robot.commands.LeftClimbTop;
 import frc.robot.commands.RightClimbArmHome;
 import frc.robot.commands.LeftClimbBottom;
 import frc.robot.subsystems.RightArm;
+import frc.robot.Constants.DriverControllerConstants;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.BallIdle;
 import frc.robot.commands.Dispose;
@@ -36,6 +37,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -53,6 +55,8 @@ public class RobotContainer {
   private final BallLift m_ballLift = new BallLift();
 
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
+  private final XboxController m_overridXboxController = new XboxController(OperatorConstants.overrideControllerUSB);
+
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -82,6 +86,15 @@ public class RobotContainer {
     JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
     JoystickButton m_downButton = new JoystickButton(m_driverController, m_driverControllerConstants.downButton);
     JoystickButton m_upbButton = new JoystickButton(m_driverController, m_driverControllerConstants.upButton);
+
+    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()-> -1*m_driverController.getLeftX(), ()-> m_driverController.getLeftY()));
+    m_ballMechinism.setDefaultCommand(new BallIdle(m_ballMechinism));
+    m_ballLift.setDefaultCommand(new StopBallLift(m_ballLift));
+
+    JoystickButton m_overrideExtake = new JoystickButton(m_overridXboxController, OperatorConstants.extakeOverrideButton);
+    JoystickButton m_overrideIntake = new JoystickButton(m_overridXboxController, OperatorConstants.intakeOverrideButton);
+    POVButton m_overrideDown = new POVButton(m_overridXboxController, 180);
+    POVButton m_overrideUp = new POVButton(m_overridXboxController, 0);
 
     //Homing
     Trigger m_leftClimbArmLimitSwitch = new Trigger(() -> m_leftArm.leftLimitSwitch());
@@ -115,6 +128,18 @@ public class RobotContainer {
 
     m_upbButton.whileHeld(new ManualRaiseBall(m_ballLift));
     m_downButton.whileHeld(new ManualLowerBall(m_ballLift));
+    //override Extake
+    m_overrideExtake.whileHeld(new Dispose(m_ballMechinism));
+
+    //override intake
+    m_overrideIntake.whileHeld(new Retrieve(m_ballMechinism));
+
+    //override Up
+    m_overrideUp.whileHeld(new ManualRaiseBall(m_ballLift));
+
+    //override down
+    m_overrideDown.whileHeld(new ManualLowerBall(m_ballLift));
+
   }
 
   /**

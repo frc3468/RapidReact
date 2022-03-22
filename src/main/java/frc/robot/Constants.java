@@ -27,11 +27,18 @@ public final class Constants {
         public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
         public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
         public static final int rightArmDescend = XboxController.Axis.kRightTrigger.value;
+    }
 
+    public static final class DriverControllerConstants {
+        public static final int intakeButton = XboxController.Button.kB.value;
+        public static final int extakeButton = XboxController.Button.kA.value;
     }
 
     public static final class OperatorConstants {
         public static final int driverControllerUSB = 0;
+        public static final int overrideControllerUSB = 1;
+        public static final int intakeOverrideButton = XboxController.Button.kB.value;
+        public static final int extakeOverrideButton = XboxController.Button.kA.value;
     }
 
     public static final class DrivetrainConstants {
@@ -84,8 +91,8 @@ public final class Constants {
 
     public static final class BallLiftConstants {
         public static final int liftMotor = 5;
-        public static final double raiseSpeed = 0.2;
-        public static final double lowerSpeed = -0.2;
+        public static final double raiseSpeed = 1.0;
+        public static final double lowerSpeed = -1.0;
         public static final double stopSpeed = 0.0;
         public static final double liftP = 3.0;
         public static final double liftI = 0.0;
