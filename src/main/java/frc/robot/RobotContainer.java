@@ -10,6 +10,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.m_driverControllerConstants;
 import frc.robot.commands.RightClimbTop;
+import frc.robot.commands.LeftArmAscendSpeed;
+import frc.robot.commands.LeftArmDescendSpeed;
+import frc.robot.commands.RightArmAscendSpeed;
+import frc.robot.commands.RightArmDescendSpeed;
 import frc.robot.commands.RightClimbBottom;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LeftClimbArmHome;
@@ -17,7 +21,6 @@ import frc.robot.commands.LeftClimbTop;
 import frc.robot.commands.RightClimbArmHome;
 import frc.robot.commands.LeftClimbBottom;
 import frc.robot.subsystems.RightArm;
-import frc.robot.Constants.DriverControllerConstants;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.BallIdle;
 import frc.robot.commands.Dispose;
@@ -78,10 +81,6 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton m_LeftArmBottomButton = new JoystickButton(m_driverController,m_driverControllerConstants.leftArmDescend);
-    JoystickButton m_LeftArmtopButton = new JoystickButton(m_driverController,m_driverControllerConstants.leftArmAscend);
-    JoystickButton m_RightArmBottomButton = new JoystickButton(m_driverController,m_driverControllerConstants.rightArmDescend);
-    JoystickButton m_RightArmTopButton = new JoystickButton(m_driverController,m_driverControllerConstants.rightArmAscend);
     JoystickButton m_intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
     JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
     JoystickButton m_downButton = new JoystickButton(m_driverController, m_driverControllerConstants.downButton);
@@ -96,23 +95,32 @@ public class RobotContainer {
     POVButton m_overrideDown = new POVButton(m_overridXboxController, 180);
     POVButton m_overrideUp = new POVButton(m_overridXboxController, 0);
 
+    //Driver Controller Climbing
+    JoystickButton m_topPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbUpButton);
+    JoystickButton m_bottomPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbDownButton);
+
+    //Override Climbing
+    JoystickButton m_leftArmDownButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.leftArmDescendOverrideButton);
+    JoystickButton m_leftArmUpButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.leftArmAscendOverrideButton);
+    JoystickButton m_rightArmDownButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.rightArmDescendOverrideButton);
+    JoystickButton m_rightArmUpButton = new JoystickButton(m_overridXboxController,m_driverControllerConstants.rightArmAscendOverrideButton);
+
     //Homing
     Trigger m_leftClimbArmLimitSwitch = new Trigger(() -> m_leftArm.leftLimitSwitch());
     Trigger m_rightClimbArmLimitSwitch = new Trigger(() -> m_rightArm.rightLimitSwitch());
-
     m_leftClimbArmLimitSwitch.whenActive(new LeftClimbArmHome(m_leftArm));
     m_rightClimbArmLimitSwitch.whenActive(new RightClimbArmHome(m_rightArm));
 
 
     //Together L/R controls for climbing 
-    m_RightArmTopButton.whileHeld(new ParallelCommandGroup(new LeftClimbTop(m_leftArm), new RightClimbTop(m_rightArm)));
+    m_topPositionClimbing.whileHeld(new ParallelCommandGroup(new LeftClimbTop(m_leftArm), new RightClimbTop(m_rightArm)));
+    m_bottomPositionClimbing.whileHeld(new ParallelCommandGroup(new LeftClimbBottom(m_leftArm), new RightClimbBottom(m_rightArm)));
 
-    //Separate L/R controls for climbing
-    /* m_LeftArmBottomButton.whileHeld(new LeftClimbBottom(m_leftArm));
-    *  m_LeftArmTopButton.whileHeld(new LeftClimbTop(m_leftArm));
-    *  m_RightArmBottomButton.whileHeld(new RightClimbBottom(m_rightArm));
-    *  m_RightArmTopButton.whileHeld(new SetLeftArmClimbSpeed(m_leftArm));
-    */
+    //Separate L/R controls for climbing (override)
+    m_leftArmDownButton.whileHeld(new LeftArmDescendSpeed(m_leftArm));
+    m_leftArmUpButton.whileHeld(new LeftArmAscendSpeed(m_leftArm));
+    m_rightArmDownButton.whileHeld(new RightArmDescendSpeed(m_rightArm));
+    m_rightArmUpButton.whileHeld(new RightArmAscendSpeed(m_rightArm));
 
     //intake
     m_intakeButton.whileHeld(new ParallelCommandGroup(

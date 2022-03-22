@@ -22,16 +22,16 @@ public final class Constants {
         public static final int extakeButton = XboxController.Button.kB.value;
         public static final int downButton = XboxController.Button.kX.value;
         public static final int upButton = XboxController.Button.kY.value;
-
         public static final int leftArmAscend = XboxController.Button.kLeftBumper.value;
         public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
         public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
         public static final int rightArmDescend = XboxController.Axis.kRightTrigger.value;
-    }
-
-    public static final class DriverControllerConstants {
-        public static final int intakeButton = XboxController.Button.kB.value;
-        public static final int extakeButton = XboxController.Button.kA.value;
+        public static final int climbUpButton = XboxController.Button.kRightBumper.value;
+        public static final int climbDownButton = XboxController.Axis.kRightTrigger.value;
+        public static final int leftArmAscendOverrideButton = XboxController.Button.kLeftBumper.value;
+        public static final int leftArmDescendOverrideButton = XboxController.Axis.kLeftTrigger.value;
+        public static final int rightArmAscendOverrideButton = XboxController.Button.kRightBumper.value;
+        public static final int rightArmDescendOverrideButton = XboxController.Axis.kRightTrigger.value;
     }
 
     public static final class OperatorConstants {
@@ -87,7 +87,6 @@ public final class Constants {
         public static final double idleSpeed = 0.075;
         public static final double stopSpeed = 0.0;
     }
-
 
     public static final class BallLiftConstants {
         public static final int liftMotor = 5;

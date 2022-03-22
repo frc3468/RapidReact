@@ -7,10 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.RightArm;
 
-public class SetRightArmClimbSpeed extends CommandBase {
+public class RightArmDescendSpeed extends CommandBase {
   private RightArm m_subsystem;
-  /** Creates a new SetRightArmClimbSpeed. */
-  public SetRightArmClimbSpeed(RightArm subsystem) {
+  /** Creates a new RightArmDescendSpeed. */
+  public RightArmDescendSpeed(RightArm subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_subsystem = subsystem;
 
@@ -24,7 +24,7 @@ public class SetRightArmClimbSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.setRightAscendSpeed();
+    m_subsystem.setRightDescendSpeed();
   }
 
   // Called once the command ends or is interrupted.
