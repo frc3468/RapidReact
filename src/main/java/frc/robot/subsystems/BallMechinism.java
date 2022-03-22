@@ -6,31 +6,31 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.BallMechinismConstants;
 
 public class BallMechinism extends SubsystemBase {
  
   private CANSparkMax m_spinMotor;
+
   /** Creates a new BallMechinism. */
   public BallMechinism() {
     m_spinMotor = new CANSparkMax(BallMechinismConstants.spinSparkMaxCANID, MotorType.kBrushless);
   }
 
-  public void BallIntake() {
+  public void ballIntake() {
     m_spinMotor.set(BallMechinismConstants.intakeSpeed);
   }
 
-  public void BallExtake() {
+  public void ballExtake() {
     m_spinMotor.set(BallMechinismConstants.extakeSpeed);
   }
 
-  public void IdleBall() {
+  public void idleBall() {
     m_spinMotor.set(BallMechinismConstants.idleSpeed);
   }
 
-  public void Stop() {
+  public void stop() {
     m_spinMotor.set(BallMechinismConstants.stopSpeed);
   }
 

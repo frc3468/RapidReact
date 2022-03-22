@@ -17,16 +17,16 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public final class Constants {
 
-    public static final class m_driverControllerConstants {
-        public static final int intakeButton = XboxController.Button.kA.value;
-        public static final int extakeButton = XboxController.Button.kB.value;
-        public static final int downButton = XboxController.Button.kX.value;
-        public static final int upButton = XboxController.Button.kY.value;
-
+    public static final class DriverControllerConstants {
+        public static final int intakeButton = XboxController.Button.kB.value;
+        public static final int extakeButton = XboxController.Button.kA.value;
     }
 
     public static final class OperatorConstants {
         public static final int driverControllerUSB = 0;
+        public static final int overrideControllerUSB = 1;
+        public static final int intakeOverrideButton = XboxController.Button.kB.value;
+        public static final int extakeOverrideButton = XboxController.Button.kA.value;
     }
 
     public static final class DrivetrainConstants {
@@ -44,8 +44,8 @@ public final class Constants {
 
     public static final class BallLiftConstants {
         public static final int liftMotor = 5;
-        public static final double raiseSpeed = 0.2;
-        public static final double lowerSpeed = -0.2;
+        public static final double raiseSpeed = 1.0;
+        public static final double lowerSpeed = -1.0;
         public static final double stopSpeed = 0.0;
         public static final double liftP = 3.0;
         public static final double liftI = 0.0;
