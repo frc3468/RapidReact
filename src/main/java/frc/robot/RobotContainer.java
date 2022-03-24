@@ -84,8 +84,6 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton m_intakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.intakeButton );
     JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
-    JoystickButton m_downButton = new JoystickButton(m_driverController, m_driverControllerConstants.downButton);
-    JoystickButton m_upButton = new JoystickButton(m_driverController, m_driverControllerConstants.upButton);
     JoystickButton m_overrideExtake = new JoystickButton(m_overridXboxController, OperatorConstants.extakeOverrideButton);
     JoystickButton m_overrideIntake = new JoystickButton(m_overridXboxController, OperatorConstants.intakeOverrideButton);
     JoystickButton m_homingButtom = new JoystickButton(m_driverController, m_driverControllerConstants.homingButton);
@@ -94,7 +92,7 @@ public class RobotContainer {
 
     //Driver Controller Climbing
     JoystickButton m_topPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbUpButton);
-    JoystickButton m_bottomPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbDownButton);
+    // JoystickButton m_bottomPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbDownButton);
 
     //Override Climbing
     Button m_leftArmDownButton = new Button(()-> m_overridXboxController.getLeftTriggerAxis() > 0.5);
@@ -131,9 +129,6 @@ public class RobotContainer {
       new RaiseBallLift(m_ballLift),
       new Dispose(m_ballMechinism)
     ));
-
-    m_upButton.whileHeld(new ManualRaiseBall(m_ballLift));
-    m_downButton.whileHeld(new ManualLowerBall(m_ballLift));
 
     //override Extake
     m_overrideExtake.whileHeld(new Dispose(m_ballMechinism));

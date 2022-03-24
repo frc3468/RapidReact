@@ -20,8 +20,6 @@ public final class Constants {
     public static final class m_driverControllerConstants {
         public static final int intakeButton = XboxController.Button.kA.value;
         public static final int extakeButton = XboxController.Button.kB.value;
-        public static final int downButton = XboxController.Button.kX.value;
-        public static final int upButton = XboxController.Button.kY.value;
         public static final int leftArmAscend = XboxController.Button.kLeftBumper.value;
         public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
         public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
@@ -101,7 +99,7 @@ public final class Constants {
         public static final double liftFF = 0.0;
         public static final double liftMin = -1.0;
         public static final double liftMax = 1.0;
-        public static final double upPIDReference = 2.4;
+        public static final double upPIDReference = 2.5;
         public static final double downPIDReference = 0.17;
         public static final double liftPIDTolorence = 0.01;
     }
