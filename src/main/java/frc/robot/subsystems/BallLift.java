@@ -62,6 +62,10 @@ public class BallLift extends SubsystemBase {
     m_setPoint = BallLiftConstants.downPIDReference; 
   }
 
+  public void startingConfig() {
+    m_liftPidController.setReference(BallLiftConstants.startingConfig, ControlType.kPosition);
+  }
+
   public void raiseManual() {
     m_liftMotor.set(BallLiftConstants.raiseSpeed);
   }

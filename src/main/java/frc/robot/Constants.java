@@ -31,6 +31,7 @@ public final class Constants {
         public static final int rightArmAscendOverrideButton = XboxController.Button.kRightBumper.value;
         public static final int rightArmDescendOverrideButton = XboxController.Axis.kRightTrigger.value;
         public static final int homingButton = XboxController.Button.kRightBumper.value;
+        public static final int startingConfig = XboxController.Button.kStart.value;
     }
 
     public static final class OperatorConstants {
@@ -101,6 +102,7 @@ public final class Constants {
         public static final double liftMax = 1.0;
         public static final double upPIDReference = 2.5;
         public static final double downPIDReference = 0.17;
+        public static final double startingConfig = 2.5;
         public static final double liftPIDTolorence = 0.01;
     }
 }
