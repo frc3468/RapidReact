@@ -85,7 +85,7 @@ public class LeftArm extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("Left Arm Limit Switch", leftLimitSwitch());
+    SmartDashboard.putBoolean("LeftLimSwitch", leftLimitSwitch());
     SmartDashboard.putNumber("Left Arm Position", m_leftEncoder.getPosition());
   }
 }

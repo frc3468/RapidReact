@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.XboxController;
 public final class Constants {
 
     public static final class m_driverControllerConstants {
-        public static final int intakeButton = XboxController.Button.kA.value;
-        public static final int extakeButton = XboxController.Button.kB.value;
+        public static final int intakeButton = XboxController.Button.kB.value;
+        public static final int extakeButton = XboxController.Button.kA.value;
         public static final int leftArmAscend = XboxController.Button.kLeftBumper.value;
         public static final int leftArmDescend = XboxController.Axis.kLeftTrigger.value;
         public static final int rightArmAscend = XboxController.Button.kRightBumper.value;
@@ -30,7 +30,7 @@ public final class Constants {
         public static final int leftArmDescendOverrideButton = XboxController.Axis.kLeftTrigger.value;
         public static final int rightArmAscendOverrideButton = XboxController.Button.kRightBumper.value;
         public static final int rightArmDescendOverrideButton = XboxController.Axis.kRightTrigger.value;
-        public static final int homingButton = XboxController.Button.kRightBumper.value;
+        public static final int homingButton = XboxController.Button.kLeftBumper.value;
         public static final int startingConfig = XboxController.Button.kStart.value;
     }
 
@@ -59,8 +59,8 @@ public final class Constants {
         public static final double leftArmMin = -0.5;
         public static final double leftArmMax = 0.5;
         public static final double upPIDReference = 85.0;
-        public static final double downPIDReference = 1.5;
-        public static final double leftPIDTolerance = 1.0;
+        public static final double downPIDReference = 15.0;
+        public static final double leftPIDTolerance = 0.01;
     }
 
     public static final class RightArmConstants {
@@ -76,8 +76,8 @@ public final class Constants {
         public static final double rightArmMin = -0.5;
         public static final double rightArmMax = 0.5;
         public static final double upPIDReference = 85.0;
-        public static final double downPIDReference = 1.5;
-        public static final double rightPIDTolerance = 1.0;
+        public static final double downPIDReference = 15.0;
+        public static final double rightPIDTolerance = 0.01;
     }
     
     public static final class BallMechinismConstants {
@@ -93,16 +93,16 @@ public final class Constants {
         public static final double raiseSpeed = 0.4;
         public static final double lowerSpeed = -0.4;
         public static final double stopSpeed = 0.0;
-        public static final double liftP = 3.0;
+        public static final double liftP = 10.0;
         public static final double liftI = 0.0;
         public static final double liftD = 0.0;
         public static final double liftIZone = 0.0;
         public static final double liftFF = 0.0;
         public static final double liftMin = -1.0;
         public static final double liftMax = 1.0;
-        public static final double upPIDReference = 2.5;
-        public static final double downPIDReference = 0.17;
+        public static final double upPIDReference = 2.6;
+        public static final double downPIDReference = 0.2;
         public static final double startingConfig = 2.5;
-        public static final double liftPIDTolorence = 0.01;
+        public static final double liftPIDTolorence = 0.001;
     }
 }

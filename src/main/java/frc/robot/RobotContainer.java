@@ -27,6 +27,7 @@ import frc.robot.commands.BallIdle;
 import frc.robot.commands.Dispose;
 import frc.robot.commands.Retrieve;
 import frc.robot.subsystems.BallMechinism;
+import frc.robot.subsystems.Camera;
 import frc.robot.commands.LowerBallLift;
 import frc.robot.commands.ManualLowerBall;
 import frc.robot.commands.ManualRaiseBall;
@@ -58,6 +59,7 @@ public class RobotContainer {
   private final RightArm m_rightArm = new RightArm();
   private final BallMechinism m_ballMechinism = new BallMechinism();
   private final BallLift m_ballLift = new BallLift();
+  private final Camera m_camera = new Camera();
 
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
   private final XboxController m_overridXboxController = new XboxController(OperatorConstants.overrideControllerUSB);
@@ -67,7 +69,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()-> (m_driverController.getLeftY()/2),()-> -1*(m_driverController.getLeftX()/2)));
+    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()-> (m_driverController.getLeftY()/1.3),()-> -1*(m_driverController.getLeftX()/1.3)));
     m_leftArm.setDefaultCommand(new LeftClimbBottom(m_leftArm).perpetually());
     m_rightArm.setDefaultCommand(new RightClimbBottom(m_rightArm).perpetually());
     m_ballMechinism.setDefaultCommand(new BallIdle(m_ballMechinism));
@@ -89,7 +91,7 @@ public class RobotContainer {
     JoystickButton m_extakeButton = new JoystickButton(m_driverController,m_driverControllerConstants.extakeButton );
     JoystickButton m_homingButtom = new JoystickButton(m_driverController, m_driverControllerConstants.homingButton);
     JoystickButton m_topPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbUpButton);
-    // JoystickButton m_bottomPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbDownButton);
+    //JoystickButton m_bottomPositionClimbing = new JoystickButton(m_driverController,m_driverControllerConstants.climbDownButton);
     JoystickButton m_startingConfig = new JoystickButton(m_driverController, m_driverControllerConstants.startingConfig);
 
 
@@ -114,7 +116,11 @@ public class RobotContainer {
 
 
     //Together L/R controls for climbing 
-    m_topPositionClimbing.whileHeld(new ParallelCommandGroup(new LeftClimbTop(m_leftArm), new RightClimbTop(m_rightArm)));
+    m_topPositionClimbing.whileHeld(new SequentialCommandGroup(
+      new ManualLowerBall(m_ballLift).withTimeout(.5),
+      new ParallelCommandGroup(
+        new LeftClimbTop(m_leftArm),
+        new RightClimbTop(m_rightArm)).perpetually()));
     // m_bottomPositionClimbing.whileHeld(new ParallelCommandGroup(new LeftClimbBottom(m_leftArm), new RightClimbBottom(m_rightArm)));
 
 
