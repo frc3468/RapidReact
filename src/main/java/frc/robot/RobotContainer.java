@@ -16,14 +16,16 @@ import frc.robot.commands.LeftArmDescendSpeed;
 import frc.robot.commands.RightArmAscendSpeed;
 import frc.robot.commands.RightArmDescendSpeed;
 import frc.robot.commands.RightClimbBottom;
-import frc.robot.commands.ExampleCommand;
+// import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LeftClimbArmHome;
 import frc.robot.commands.LeftClimbTop;
 import frc.robot.commands.RightClimbArmHome;
 import frc.robot.commands.LeftClimbBottom;
 import frc.robot.subsystems.RightArm;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.Auto;
 import frc.robot.commands.BallIdle;
+import frc.robot.commands.BallLiftingConfig;
 import frc.robot.commands.Dispose;
 import frc.robot.commands.Retrieve;
 import frc.robot.subsystems.BallMechinism;
@@ -35,7 +37,7 @@ import frc.robot.commands.RaiseBallLift;
 import frc.robot.commands.StopBallLift;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.BallLift;
-import frc.robot.subsystems.ExampleSubsystem;
+// import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LeftArm;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -53,7 +55,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain m_driveTrain = new Drivetrain();
   private final LeftArm m_leftArm = new LeftArm();
   private final RightArm m_rightArm = new RightArm();
@@ -64,12 +66,12 @@ public class RobotContainer {
   private final XboxController m_driverController = new XboxController(OperatorConstants.driverControllerUSB);
   private final XboxController m_overridXboxController = new XboxController(OperatorConstants.overrideControllerUSB);
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Auto m_autoCommand = new Auto(m_leftArm, m_rightArm, m_driveTrain, m_ballMechinism);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()-> (m_driverController.getLeftY()/1.3),()-> -1*(m_driverController.getLeftX()/1.3)));
+    m_driveTrain.setDefaultCommand(new ArcadeDrive(m_driveTrain, ()-> -1*(m_driverController.getLeftY()/1.2),()-> (m_driverController.getLeftX()/1.2)));
     m_leftArm.setDefaultCommand(new LeftClimbBottom(m_leftArm).perpetually());
     m_rightArm.setDefaultCommand(new RightClimbBottom(m_rightArm).perpetually());
     m_ballMechinism.setDefaultCommand(new BallIdle(m_ballMechinism));
@@ -117,7 +119,7 @@ public class RobotContainer {
 
     //Together L/R controls for climbing 
     m_topPositionClimbing.whileHeld(new SequentialCommandGroup(
-      new ManualLowerBall(m_ballLift).withTimeout(.5),
+      new BallLiftingConfig(m_ballLift),
       new ParallelCommandGroup(
         new LeftClimbTop(m_leftArm),
         new RightClimbTop(m_rightArm)).perpetually()));

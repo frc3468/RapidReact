@@ -24,8 +24,8 @@ public class Drivetrain extends SubsystemBase {
   public Drivetrain() {
     m_leftNEO = new CANSparkMax(DrivetrainConstants.leftSparkMaxCANID,MotorType.kBrushless);
     m_rightNEO = new CANSparkMax(DrivetrainConstants.rightSparkMaxCANID,MotorType.kBrushless);
-    m_leftNEO.setInverted(true);
-    m_rightNEO.setInverted(false);
+    m_leftNEO.setInverted(false);
+    m_rightNEO.setInverted(true);
 
     m_leftNEO.setIdleMode(IdleMode.kCoast);
     m_rightNEO.setIdleMode(IdleMode.kCoast);

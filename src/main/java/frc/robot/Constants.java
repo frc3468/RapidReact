@@ -57,9 +57,9 @@ public final class Constants {
         public static final double leftArmIZone = 0.0;
         public static final double leftArmFF = 0.0;
         public static final double leftArmMin = -0.5;
-        public static final double leftArmMax = 0.5;
+        public static final double leftArmMax = 1.0;
         public static final double upPIDReference = 85.0;
-        public static final double downPIDReference = 15.0;
+        public static final double downPIDReference = 7.0;
         public static final double leftPIDTolerance = 0.01;
     }
 
@@ -74,16 +74,16 @@ public final class Constants {
         public static final double rightArmIZone = 0.0;
         public static final double rightArmFF = 0.0;
         public static final double rightArmMin = -0.5;
-        public static final double rightArmMax = 0.5;
+        public static final double rightArmMax = 0.7;
         public static final double upPIDReference = 85.0;
-        public static final double downPIDReference = 15.0;
+        public static final double downPIDReference = 7.0;
         public static final double rightPIDTolerance = 0.01;
     }
     
     public static final class BallMechinismConstants {
         public static final int spinSparkMaxCANID = 6;
         public static final double intakeSpeed = 0.4;
-        public static final double extakeSpeed = -0.4;
+        public static final double extakeSpeed = -0.6;
         public static final double idleSpeed = 0.075;
         public static final double stopSpeed = 0.0;
     }
@@ -101,8 +101,9 @@ public final class Constants {
         public static final double liftMin = -1.0;
         public static final double liftMax = 1.0;
         public static final double upPIDReference = 2.6;
-        public static final double downPIDReference = 0.2;
+        public static final double downPIDReference = 0.18;
         public static final double startingConfig = 2.5;
         public static final double liftPIDTolorence = 0.001;
+        public static final double liftingConfig = 2.0;
     }
 }
