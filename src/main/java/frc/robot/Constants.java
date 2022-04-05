@@ -101,7 +101,7 @@ public final class Constants {
         public static final double liftMin = -1.0;
         public static final double liftMax = 1.0;
         public static final double upPIDReference = 2.6;
-        public static final double downPIDReference = 0.18;
+        public static final double downPIDReference = 0.165;
         public static final double startingConfig = 2.5;
         public static final double liftPIDTolorence = 0.001;
         public static final double liftingConfig = 2.0;
