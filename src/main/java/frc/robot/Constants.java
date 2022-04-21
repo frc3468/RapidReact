@@ -65,7 +65,7 @@ public final class Constants {
 
     public static final class RightArmConstants {
         public static final int rightSparkMaxID = 4;
-        public static final double ascensionSpeed = 0.2;
+        public static final double ascensionSpeed = 0.25;
         public static final double descensionSpeed = -0.25;
         public static final double stopSpeed = 0.0;
         public static final double rightArmP = 3.0;
@@ -74,7 +74,7 @@ public final class Constants {
         public static final double rightArmIZone = 0.0;
         public static final double rightArmFF = 0.0;
         public static final double rightArmMin = -0.5;
-        public static final double rightArmMax = 0.7;
+        public static final double rightArmMax = 1.0;
         public static final double upPIDReference = 85.0;
         public static final double downPIDReference = 7.0;
         public static final double rightPIDTolerance = 0.01;
